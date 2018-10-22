@@ -1,15 +1,14 @@
 FROM microsoft/dotnet:2.1-runtime-deps-alpine3.7
 
 # Install ASP.NET Core
-ENV ASPNETCORE_VERSION 2.1.4
+ENV ASPNETCORE_VERSION 2.1.5
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 RUN apk add --no-cache --virtual .build-deps \
         openssl \
-    && apk upgrade apk --no-cache \
-    && wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/$ASPNETCORE_VERSION/aspnetcore-runtime-$ASPNETCORE_VERSION-linux-musl-x64.tar.gz \
-    && aspnetcore_sha512='173168730d6fe23a7c5457ed5533e4dc103a2f95ae5c0118a3ac4fd06ad23a1bd5a605bd43b10148cf8bcfc3a5b4c32d78b8d745dd5ba57921449a236f2c8ad8' \
-    && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
+    && wget -O dotnet.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-musl-x64.tar.gz \
+    && dotnet_sha512='6823778d6ae0a57a9782d1fa460fcea2c7df99c719d14d4aef96e4cbc48406936090e2f727cbcb961f6e645ea960374575e37db8f59907cfc5a588bb1044d840' \
+    && echo "$dotnet_sha512  dotnet.tar.gz" | sha512sum -c - \
     && mkdir -p /usr/share/dotnet \
     && tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet \
     && rm aspnetcore.tar.gz \
