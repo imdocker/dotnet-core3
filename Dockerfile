@@ -1,7 +1,8 @@
 FROM microsoft/dotnet:2.1-runtime-deps-alpine3.7
 
 # Install ASP.NET Core
-ENV ASPNETCORE_VERSION 2.1.4
+ENV ASPNETCORE_VERSION 2.1.6
+
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 RUN apk add --no-cache --virtual .build-deps \
