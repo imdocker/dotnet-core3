@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/runtime-deps:2.2-alpine3.8
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:2.2-alpine3.9
 
 # Install ASP.NET Core
 ENV ASPNETCORE_VERSION 2.2.3
