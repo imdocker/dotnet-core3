@@ -1,5 +1,4 @@
-ARG REPO=mcr.microsoft.com/dotnet/core/runtime-deps
-FROM $REPO:2.2-alpine3.8
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:2.2-alpine3.8
 
 # Install ASP.NET Core
 ENV ASPNETCORE_VERSION 2.2.3
@@ -11,4 +10,5 @@ RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/asp
     && tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet \
     && rm aspnetcore.tar.gz \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
+    && ls -la /usr/share/dotnet/dotnet \
     && apk add --no-cache icu-libs curl
