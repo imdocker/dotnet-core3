@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/runtime-deps:2.2-alpine3.8
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:2.2-alpine3.9
 
 # Install ASP.NET Core
-ENV ASPNETCORE_VERSION 2.2.2
+ENV ASPNETCORE_VERSION 2.2.3
 
 RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/$ASPNETCORE_VERSION/aspnetcore-runtime-$ASPNETCORE_VERSION-linux-musl-x64.tar.gz \
-    && aspnetcore_sha512='59e2e0eb092d90ba53814c74259f59dcb8aa11b409b908e849aa0d851ec6cef7d1616e02c23d37e84901ca92fd9a6eb05c522ef8668da1fa6a518211532b41ab' \
+    && aspnetcore_sha512='9d706c4916ef527ff93dbb2c7e774d6f0482e1d22a1a963fd7f13e7deaea8fd3ed754e46d104f9a921751fc83d1dcbd4e582591bb29966ec2a65903ca05a1b45' \
     && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
     && mkdir -p /usr/share/dotnet \
     && tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet \
@@ -12,5 +12,3 @@ RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/asp
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
     && ls -la /usr/share/dotnet/dotnet \
     && apk add --no-cache icu-libs curl
-
-# Downgrade from 2.2.3 to 2.2.2 (worked version) while not fixed https://github.com/dotnet/dotnet-docker/issues/986
