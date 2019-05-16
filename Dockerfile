@@ -10,4 +10,4 @@ RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/asp
     && tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet \
     && rm aspnetcore.tar.gz \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
-    && apk add libgdiplus icu-libs curl mc --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
+    && apk add msttcorefonts-installer libgdiplus icu-libs curl mc --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
