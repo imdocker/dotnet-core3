@@ -1,14 +1,14 @@
 FROM mcr.microsoft.com/dotnet/core/runtime-deps:2.2-alpine3.9
 
 # Install ASP.NET Core
-ENV ASPNETCORE_VERSION 2.2.3
+ENV ASPNETCORE_VERSION 2.2.5
 
 RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/$ASPNETCORE_VERSION/aspnetcore-runtime-$ASPNETCORE_VERSION-linux-musl-x64.tar.gz \
-    && aspnetcore_sha512='9d706c4916ef527ff93dbb2c7e774d6f0482e1d22a1a963fd7f13e7deaea8fd3ed754e46d104f9a921751fc83d1dcbd4e582591bb29966ec2a65903ca05a1b45' \
+    && aspnetcore_sha512='6dc1058c218a8ac70c4ea8ce0c62a0ce275374c282ff87fcac940c9e472297effaab94fb7e1738d68e61f1f021166e9f565e676a0a9ddcf2aeb0762144bf7b92' \
     && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
     && mkdir -p /usr/share/dotnet \
     && tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet \
     && rm aspnetcore.tar.gz \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
-    && ls -la /usr/share/dotnet/dotnet \
-    && apk add --no-cache icu-libs curl
+    && apk add libgdiplus --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+    && apk add --no-cache icu-libs curl mc
