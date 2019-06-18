@@ -10,5 +10,7 @@ RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/asp
     && tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet \
     && rm aspnetcore.tar.gz \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
-    && apk add msttcorefonts-installer libgdiplus icu-libs curl mc --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+    && apk add tzdata msttcorefonts-installer libgdiplus icu-libs curl mc --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
     && /usr/bin/update-ms-fonts
+
+#tzdata package need for Setup timezone container with cp -vf /usr/share/zoneinfo/needlocaltime / localtime
